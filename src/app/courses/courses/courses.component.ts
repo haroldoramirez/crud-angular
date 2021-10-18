@@ -1,3 +1,4 @@
+import { CoursesService } from './../services/courses.service';
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../model/course';
 
@@ -8,26 +9,23 @@ import { Course } from '../model/course';
 })
 export class CoursesComponent implements OnInit {
 
-  //Declara variaveis
-  courses: Course[];
-  displayedColumns: string[];
+  //Injecao de dependencia
+
+
+  //Apenas os códigos necessários para mostrar na tela e validações
+  //Dados são utilizados no service
+  courses: Course[] = [];
+
+  displayedColumns = ['name', 'category'];
 
    //Inicializa variaveis
-  constructor() {
-    this.courses = [
-      {_id: '1', name: 'Angular', category: 'front-end'},
-      {_id: '2', name: 'Java', category: 'back-end'},
-      {_id: '3', name: 'Python', category: 'back-end'},
-      {_id: '4', name: 'AngularJs', category: 'front-end'},
-      {_id: '5', name: 'Quarkus', category: 'back-end'},
-      {_id: '6', name: 'VueJs', category: 'front-end'},
-      {_id: '7', name: 'Javascript', category: 'front-end'}
-    ];
-    this.displayedColumns = ['name', 'category'];
+   //Possivel quando service tem a tag injectable
+  constructor(private coursesService: CoursesService) {
+
   }
 
   ngOnInit(): void {
-
+    this.courses = this.coursesService.list();
   }
 
 }
