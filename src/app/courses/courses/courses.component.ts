@@ -15,7 +15,7 @@ export class CoursesComponent implements OnInit {
 
   //Apenas os códigos necessários para mostrar na tela e validações
   //Dados são utilizados no service
-  courses: Observable<Course[]>;
+  courses$: Observable<Course[]>;
 
   displayedColumns = ['name', 'category'];
 
@@ -23,7 +23,7 @@ export class CoursesComponent implements OnInit {
    //Possivel quando service tem a tag injectable
   constructor(private coursesService: CoursesService) {
 
-    this.courses = this.coursesService.list();
+    this.courses$ = this.coursesService.list();
 
   }
 
